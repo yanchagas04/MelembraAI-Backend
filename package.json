@@ -1,0 +1,23 @@
+{
+  "name": "melembraai-backend",
+  "version": "0.0.1",
+  "description": "Back-End para o projeto em equipe de FullStack",
+  "main": "server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yanchagas04/MelembraAI-Backend.git"
+  },
+  "author": "yanchagas04, vhjsoficial1, vfdeoliveira1 and radonix",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yanchagas04/MelembraAI-Backend/issues"
+  },
+  "homepage": "https://github.com/yanchagas04/MelembraAI-Backend#readme",
+  "dependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.1"
+  }
+}
