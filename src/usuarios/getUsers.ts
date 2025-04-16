@@ -6,6 +6,6 @@ export async function getUsers(req: Request, res: Response) {
         const users = await prisma.user.findMany();
         res.json(users);
     } catch (error) {
-        res.status(500).json({ error: "Erro ao buscar usuários." , details: error });
+        res.status(500).json({ error: "Erro ao buscar usuários." , details: error});
     }
 };
