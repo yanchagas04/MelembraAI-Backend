@@ -17,3 +17,9 @@ Este repositório contém a API desenvolvida para o **MelembraAI**, responsável
 - **Prisma** (ORM com suporte a TypeScript)
 - **SQLite** (Banco de dados para desenvolvimento)
 - **TypeScript** (Tipagem estática)
+
+## Desenvolvido por:
+- [Matheus Calheira](https://github.com/radonix)
+- [Vinícius Oliveira](https://github.com/vfdeoliveira1)
+- [Vitor Hugo](https://github.com/vhjsoficial1)
+- [Yan Campêlo](https://github.com/yanchagas04)
