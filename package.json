@@ -1,31 +1,36 @@
 {
-  "name": "melembraai-backend",
-  "version": "0.0.1",
-  "description": "Back-End para o projeto em equipe de FullStack",
-  "main": "server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts",
-    "build": "tsc"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yanchagas04/MelembraAI-Backend.git"
-  },
-  "author": "yanchagas04, vhjsoficial1, vfdeoliveira1 and radonix",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/yanchagas04/MelembraAI-Backend/issues"
-  },
-  "homepage": "https://github.com/yanchagas04/MelembraAI-Backend#readme",
-  "dependencies": {
-    "@types/express": "^5.0.1",
-    "@types/node": "^22.14.1",
-    "express": "^5.1.0"
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
   "devDependencies": {
-    "prisma": "^6.6.0",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^5.8.3"
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^5.0.2",
+    "@types/express-validator": "^2.20.33",
+    "@types/jest": "^29.5.14",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/supertest": "^6.0.3",
+    "jest": "^29.7.0",
+    "jest-mock-extended": "^4.0.0-beta1",
+    "prisma": "^6.8.2",
+    "supertest": "^7.1.1",
+    "ts-jest": "^29.3.4",
+    "ts-node-dev": "^2.0.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.8.2",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-validator": "^6.15.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   }
 }
