@@ -28,7 +28,7 @@ class ActivityController {
         activity: newActivity
       });
     } catch (error) {
-      console.error('Erro no controller de criação de atividade:', error);
+      console.log('Erro no controller de criação de atividade:', error);
       res.status(500).json({ message: 'Erro ao criar atividade' });
     }
   }
