@@ -27,15 +27,15 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/api/auth', authRoutes);
 app.use('/api/activities', activityRoutes);
 
-// Rota de status
-app.get('/status', (req, res) => {
-  res.status(200).json({ status: 'online', message: 'API MelembraAI está funcionando!' });
-});
+// // Rota de status
+// app.get('/status', (req, res) => {
+//   res.status(200).json({ status: 'online', message: 'API MelembraAI está funcionando!' });
+// });
 
-// Tratamento de erros 404
-app.use((req, res) => {
-  res.status(404).json({ message: 'Rota não encontrada' });
-});
+// // Tratamento de erros 404
+// app.use((req, res) => {
+//   res.status(404).json({ message: 'Rota não encontrada' });
+// });
 
 // Iniciar o servidor
 const PORT = process.env.PORT || 3001;

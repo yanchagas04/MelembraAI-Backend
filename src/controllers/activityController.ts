@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { validationResult } from 'express-validator';
+const validationResult = require('express-validator');
 import activityService from '../services/activityService';
 
 class ActivityController {

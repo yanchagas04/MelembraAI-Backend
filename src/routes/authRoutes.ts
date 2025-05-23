@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { body } from 'express-validator';
+const {body} = require('express-validator');
 import authController from '../controllers/authController';
 
 const router = Router();
