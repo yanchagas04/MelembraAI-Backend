@@ -2,7 +2,7 @@ import { PrismaClient } from '../../lib/prisma/client';
 
 // Definindo os tipos User e Activity para resolver problemas de importação
 export type User = {
-  id: number;
+  id: string;
   name: string;
   email: string;
   password: string;
@@ -16,7 +16,7 @@ export type Activity = {
   description: string | null;
   date: Date;
   completed: boolean;
-  userId: number;
+  userId: string;
   createdAt: Date;
   updatedAt: Date;
 };

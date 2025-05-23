@@ -10,7 +10,7 @@ interface UserData {
 
 interface AuthResult {
   user: {
-    id: number;
+    id: string;
     name: string;
     email: string;
   };

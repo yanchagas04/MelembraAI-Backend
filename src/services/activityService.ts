@@ -9,7 +9,7 @@ interface ActivityData {
 
 class ActivityService {
   // Criar uma nova atividade
-  async createActivity(activityData: ActivityData, userId: number): Promise<Activity> {
+  async createActivity(activityData: ActivityData, userId: string): Promise<Activity> {
     try {
       const newActivity = await prisma.activity.create({
         data: {
@@ -29,7 +29,7 @@ class ActivityService {
   }
   
   // Buscar todas as atividades de um usuário
-  async getAllActivities(userId: number): Promise<Activity[]> {
+  async getAllActivities(userId: string): Promise<Activity[]> {
     try {
       const activities = await prisma.activity.findMany({
         where: { userId },
@@ -44,7 +44,7 @@ class ActivityService {
   }
   
   // Buscar uma atividade por ID
-  async getActivityById(id: number, userId: number): Promise<Activity> {
+  async getActivityById(id: number, userId: string): Promise<Activity> {
     try {
       const activity = await prisma.activity.findFirst({
         where: { 
@@ -65,10 +65,10 @@ class ActivityService {
   }
   
   // Atualizar uma atividade
-  async updateActivity(id: number, activityData: ActivityData, userId: number): Promise<Activity> {
+  async updateActivity(id: number, activityData: ActivityData, userId: string): Promise<Activity> {
     try {
       // Verificar se a atividade existe e pertence ao usuário
-      const existingActivity = await this.getActivityById(id, userId);
+      await this.getActivityById(id, userId);
       
       const updatedActivity = await prisma.activity.update({
         where: { id },
@@ -88,10 +88,10 @@ class ActivityService {
   }
   
   // Excluir uma atividade
-  async deleteActivity(id: number, userId: number): Promise<Activity> {
+  async deleteActivity(id: number, userId: string): Promise<Activity> {
     try {
       // Verificar se a atividade existe e pertence ao usuário
-      const existingActivity = await this.getActivityById(id, userId);
+      await this.getActivityById(id, userId);
       
       const deletedActivity = await prisma.activity.delete({
         where: { id }

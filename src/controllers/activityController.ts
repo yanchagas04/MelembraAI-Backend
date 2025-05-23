@@ -13,7 +13,7 @@ class ActivityController {
         return;
       }
       
-      const userId = req.user?.userId as number;
+      const userId = req.user?.userId as unknown as string;
       const activityData = {
         title: req.body.title,
         description: req.body.description,
@@ -36,7 +36,7 @@ class ActivityController {
   // Buscar todas as atividades do usuário
   async getAll(req: Request, res: Response): Promise<void> {
     try {
-      const userId = req.user?.userId as number;
+      const userId = req.user?.userId as unknown as string;
       
       const activities = await activityService.getAllActivities(userId);
       
@@ -52,7 +52,7 @@ class ActivityController {
   // Buscar uma atividade por ID
   async getById(req: Request, res: Response): Promise<void> {
     try {
-      const userId = req.user?.userId as number;
+      const userId = req.user?.userId as unknown as string;
       const activityId = parseInt(req.params.id);
       
       const activity = await activityService.getActivityById(activityId, userId);
@@ -82,7 +82,7 @@ class ActivityController {
         return;
       }
       
-      const userId = req.user?.userId as number;
+      const userId = req.user?.userId as unknown as string;
       const activityId = parseInt(req.params.id);
       const activityData = {
         title: req.body.title,
@@ -112,7 +112,7 @@ class ActivityController {
   // Excluir uma atividade
   async delete(req: Request, res: Response): Promise<void> {
     try {
-      const userId = req.user?.userId as number;
+      const userId = req.user?.userId as unknown as string;
       const activityId = parseInt(req.params.id);
       
       await activityService.deleteActivity(activityId, userId);
