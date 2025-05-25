@@ -38,7 +38,6 @@ yarn-error.log*
 junit.xml
 
 # Prisma
-/prisma/migrations
 /prisma/database
 /prisma/*.db
 
