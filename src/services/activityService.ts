@@ -44,7 +44,7 @@ class ActivityService {
   }
   
   // Buscar uma atividade por ID
-  async getActivityById(id: number, userId: string): Promise<Activity> {
+  async getActivityById(id: string, userId: string): Promise<Activity> {
     try {
       const activity = await prisma.activity.findFirst({
         where: { 
@@ -65,7 +65,7 @@ class ActivityService {
   }
   
   // Atualizar uma atividade
-  async updateActivity(id: number, activityData: ActivityData, userId: string): Promise<Activity> {
+  async updateActivity(id: string, activityData: ActivityData, userId: string): Promise<Activity> {
     try {
       // Verificar se a atividade existe e pertence ao usuário
       await this.getActivityById(id, userId);
@@ -88,7 +88,7 @@ class ActivityService {
   }
   
   // Excluir uma atividade
-  async deleteActivity(id: number, userId: string): Promise<Activity> {
+  async deleteActivity(id: string, userId: string): Promise<Activity> {
     try {
       // Verificar se a atividade existe e pertence ao usuário
       await this.getActivityById(id, userId);

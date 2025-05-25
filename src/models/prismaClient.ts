@@ -11,7 +11,7 @@ export type User = {
 };
 
 export type Activity = {
-  id: number;
+  id: string;
   title: string;
   description: string | null;
   date: Date;

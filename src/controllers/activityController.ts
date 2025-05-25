@@ -53,7 +53,7 @@ class ActivityController {
   async getById(req: Request, res: Response): Promise<void> {
     try {
       const userId = req.user?.userId as unknown as string;
-      const activityId = parseInt(req.params.id);
+      const activityId = (req.params.id);
       
       const activity = await activityService.getActivityById(activityId, userId);
       
@@ -83,7 +83,7 @@ class ActivityController {
       }
       
       const userId = req.user?.userId as unknown as string;
-      const activityId = parseInt(req.params.id);
+      const activityId = (req.params.id);
       const activityData = {
         title: req.body.title,
         description: req.body.description,
@@ -113,7 +113,7 @@ class ActivityController {
   async delete(req: Request, res: Response): Promise<void> {
     try {
       const userId = req.user?.userId as unknown as string;
-      const activityId = parseInt(req.params.id);
+      const activityId = (req.params.id);
       
       await activityService.deleteActivity(activityId, userId);
       
