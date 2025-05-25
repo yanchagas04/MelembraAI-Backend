@@ -5,7 +5,7 @@
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts",
     "build": "tsc",
     "config-dev": "prisma generate && prisma migrate dev",
-    "config-prod": "prisma generate",
+    "config-prod": "prisma generate && prisma migrate deploy",
     "start": "node dist/server.js"
   },
   "devDependencies": {
