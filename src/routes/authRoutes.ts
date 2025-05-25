@@ -5,7 +5,7 @@ import authController from '../controllers/authController';
 const router = Router();
 
 /**
- * @swagger
+ * @swaggerZ
  * /api/auth/register:
  *   post:
  *     summary: Registra um novo usuário
