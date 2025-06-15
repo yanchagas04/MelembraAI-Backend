@@ -18,13 +18,17 @@ declare global {
   }
 }
 
+const TOKEN_NAO_FORNECIDO = 'Token de autenticação não fornecido';
+const TOKEN_INVALIDO = 'Token inválido ou expirado';
+const ERRO_INTERNO = 'Erro do servidor, contate o administrador.';
+
 // Middleware para verificar autenticação
 const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
   try {
     // Verificar se o token está presente no header
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      res.status(401).json({ message: 'Token de autenticação não fornecido' });
+      res.status(401).json({ message: TOKEN_NAO_FORNECIDO });
       return;
     }
     
@@ -40,14 +44,14 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction): void =
     // Prosseguir para o próximo middleware ou controller
     next();
   } catch (error) {
-    console.error('Erro no middleware de autenticação:', error);
+    console.error('Erro no middleware de autenticação: ', error);
     
     if (error instanceof jwt.JsonWebTokenError || error instanceof jwt.TokenExpiredError) {
-      res.status(401).json({ message: 'Token inválido ou expirado' });
+      res.status(401).json({ message: TOKEN_INVALIDO });
       return;
     }
     
-    res.status(500).json({ message: 'Erro na autenticação' });
+    res.status(500).json({ message: ERRO_INTERNO });
   }
 };
 
