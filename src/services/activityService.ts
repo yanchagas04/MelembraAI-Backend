@@ -59,7 +59,7 @@ class ActivityService {
       
       return activity;
     } catch (error) {
-      console.error('Erro no serviço de busca de atividade por ID:', error);
+      console.error('Erro no serviço de busca de atividade por ID: ', error);
       throw error;
     }
   }
@@ -82,7 +82,7 @@ class ActivityService {
       
       return updatedActivity;
     } catch (error) {
-      console.error('Erro no serviço de atualização de atividade:', error);
+      console.error('Erro no serviço de atualização de atividade: ', error);
       throw error;
     }
   }
@@ -99,7 +99,7 @@ class ActivityService {
       
       return deletedActivity;
     } catch (error) {
-      console.error('Erro no serviço de exclusão de atividade:', error);
+      console.error('Erro no serviço de exclusão de atividade: ', error);
       throw error;
     }
   }

@@ -2,6 +2,9 @@ import { Request, Response } from 'express';
 const {validationResult} = require('express-validator');
 import activityService from '../services/activityService';
 
+const ERRO_INTERNO = 'Erro do servidor, contate o administrador.';
+const ATIVIDADE_NAO_ENCONTRADA = 'Atividade nao encontrada.';
+
 class ActivityController {
   // Criar uma nova atividade
   async create(req: Request, res: Response): Promise<void> {
@@ -28,8 +31,8 @@ class ActivityController {
         activity: newActivity
       });
     } catch (error) {
-      console.log('Erro no controller de criação de atividade:', error);
-      res.status(500).json({ message: 'Erro ao criar atividade' });
+      console.log('Erro no controller de criação de atividade: ', error);
+      res.status(500).json({ message: ERRO_INTERNO});
     }
   }
   
@@ -45,7 +48,7 @@ class ActivityController {
       });
     } catch (error) {
       console.error('Erro no controller de busca de atividades:', error);
-      res.status(500).json({ message: 'Erro ao buscar atividades' });
+      res.status(500).json({ message: ERRO_INTERNO });
     }
   }
   
@@ -63,12 +66,12 @@ class ActivityController {
     } catch (error: any) {
       console.error('Erro no controller de busca de atividade por ID:', error);
       
-      if (error.message === 'Atividade não encontrada') {
-        res.status(404).json({ message: error.message });
+      if (error.message === ATIVIDADE_NAO_ENCONTRADA) {
+        res.status(404).json({ message: ATIVIDADE_NAO_ENCONTRADA });
         return;
       }
       
-      res.status(500).json({ message: 'Erro ao buscar atividade' });
+      res.status(500).json({ message: ERRO_INTERNO });
     }
   }
   
@@ -100,12 +103,12 @@ class ActivityController {
     } catch (error: any) {
       console.error('Erro no controller de atualização de atividade:', error);
       
-      if (error.message === 'Atividade não encontrada') {
-        res.status(404).json({ message: error.message });
+      if (error.message === ATIVIDADE_NAO_ENCONTRADA) {
+        res.status(404).json({ message: ATIVIDADE_NAO_ENCONTRADA });
         return;
       }
       
-      res.status(500).json({ message: 'Erro ao atualizar atividade' });
+      res.status(500).json({ message: ERRO_INTERNO });
     }
   }
   
@@ -123,12 +126,12 @@ class ActivityController {
     } catch (error: any) {
       console.error('Erro no controller de exclusão de atividade:', error);
       
-      if (error.message === 'Atividade não encontrada') {
-        res.status(404).json({ message: error.message });
+      if (error.message === ATIVIDADE_NAO_ENCONTRADA) {
+        res.status(404).json({ message: ATIVIDADE_NAO_ENCONTRADA });
         return;
       }
       
-      res.status(500).json({ message: 'Erro ao excluir atividade' });
+      res.status(500).json({ message: ERRO_INTERNO });
     }
   }
 }
