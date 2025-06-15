@@ -16,7 +16,7 @@ const app = express();
 // Middlewares
 app.use(cors(
   {
-    origin: ['*', 'https://melembra-ai.vercel.app'],
+    origin: ['*', 'https://melembra-ai.vercel.app', 'localhost:3000', 'http://localhost:3000'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   }
@@ -52,5 +52,9 @@ app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
   }
 });
+
+import summaryRoutes from './routes/summaryRoutes';
+
+app.use('/api/summary', summaryRoutes);
 
 export default app;
