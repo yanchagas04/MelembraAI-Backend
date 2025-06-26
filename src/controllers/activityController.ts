@@ -12,7 +12,7 @@ class ActivityController {
         return;
       }
 
-      const userId = req.user?.userId as string;
+      const userId = req.user?.userId;
       const activityData = {
         title: req.body.title,
         description: req.body.description,
@@ -20,7 +20,7 @@ class ActivityController {
         completed: req.body.completed || false
       };
 
-      const newActivity = await activityService.createActivity(activityData, userId);
+      const newActivity = await activityService.createActivity(activityData, userId as unknown as string);
       res.status(201).json({
         message: 'Atividade criada com sucesso',
         activity: newActivity
@@ -34,8 +34,8 @@ class ActivityController {
   // Listar todas as atividades
   async getAll(req: Request, res: Response): Promise<void> {
     try {
-      const userId = req.user?.userId as string;
-      const activities = await activityService.getAllActivities(userId);
+      const userId = req.user?.userId;
+      const activities = await activityService.getAllActivities(userId as unknown as string);
       res.status(200).json({ activities });
     } catch (error) {
       console.error('Erro no controller (getAll):', error);
@@ -46,10 +46,10 @@ class ActivityController {
   // Buscar atividade específica
   async getById(req: Request, res: Response): Promise<void> {
     try {
-      const userId = req.user?.userId as string;
+      const userId = req.user?.userId;
       const activityId = req.params.id;
       
-      const activity = await activityService.getActivityById(activityId, userId);
+      const activity = await activityService.getActivityById(activityId, userId as unknown as string);
       
       if (!activity) {
         res.status(404).json({ message: 'Atividade não encontrada' });
@@ -72,7 +72,7 @@ class ActivityController {
         return;
       }
 
-      const userId = req.user?.userId as string;
+      const userId = req.user?.userId;
       const activityId = req.params.id;
       const activityData = {
         title: req.body.title,
@@ -84,7 +84,7 @@ class ActivityController {
       const updatedActivity = await activityService.updateActivity(
         activityId, 
         activityData, 
-        userId
+        userId as unknown as string
       );
 
       res.status(200).json({
@@ -100,10 +100,10 @@ class ActivityController {
   // Deletar atividade
   async delete(req: Request, res: Response): Promise<void> {
     try {
-      const userId = req.user?.userId as string;
+      const userId = req.user?.userId;
       const activityId = req.params.id;
 
-      await activityService.deleteActivity(activityId, userId);
+      await activityService.deleteActivity(activityId, userId as unknown as string);
       res.status(200).json({ message: 'Atividade deletada com sucesso' });
     } catch (error) {
       console.error('Erro no controller (delete):', error);
