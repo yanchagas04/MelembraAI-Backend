@@ -48,6 +48,8 @@ class ActivityService {
     } catch (error) {
       console.error('Erro ao buscar atividade:', error);
       throw new Error('Falha ao buscar atividade');
+      console.error('Erro no serviço de busca de atividade por ID: ', error);
+      throw error;
     }
   }
 
@@ -71,6 +73,8 @@ class ActivityService {
     } catch (error) {
       console.error('Erro ao atualizar atividade:', error);
       throw new Error('Falha ao atualizar atividade');
+      console.error('Erro no serviço de atualização de atividade: ', error);
+      throw error;
     }
   }
 
@@ -83,6 +87,8 @@ class ActivityService {
     } catch (error) {
       console.error('Erro ao deletar atividade:', error);
       throw new Error('Falha ao deletar atividade');
+      console.error('Erro no serviço de exclusão de atividade: ', error);
+      throw error;
     }
   }
 }
