@@ -2,9 +2,9 @@ import { Request, Response } from 'express';
 const {validationResult} = require('express-validator');
 import authService from '../services/authService';
 
-const ERRO_INTERNO = 'Erro do servidor, contate o administrador.';
-const EMAIL_JA_CADASTRADO = 'Email ja cadastrado.';
-const CREDENCIAIS_INVALIDAS = 'Credenciais inválidas.';
+const ERRO_INTERNO = 'Erro do servidor, contate o administrador';
+const EMAIL_JA_CADASTRADO = 'Email ja cadastrado';
+const CREDENCIAIS_INVALIDAS = 'Credenciais inválidas';
 
 class AuthController {
   // Registrar um novo usuário
