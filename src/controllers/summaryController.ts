@@ -4,14 +4,14 @@ import summaryService from '../services/summaryService';
 class SummaryController {
   async sendManualSummary(req: Request, res: Response): Promise<void> {
     try {
-      const userId = req.user?.userId as string; // Extrai do token JWT
+      const userId = req.user?.userId; // Extrai do token JWT
       const { 
         includeCompleted = true, 
         includePending = true, 
         dateRange 
       } = req.body;
 
-      await summaryService.sendManualSummary(userId, {
+      await summaryService.sendManualSummary(userId as unknown as string, {
         includeCompleted,
         includePending,
         dateRange: dateRange ? {
@@ -21,7 +21,7 @@ class SummaryController {
       });
 
       res.status(200).json({ message: 'Resumo enviado por email com sucesso' });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Erro ao enviar resumo:', error);
       res.status(500).json({ 
         message: 'Erro ao enviar resumo por email',

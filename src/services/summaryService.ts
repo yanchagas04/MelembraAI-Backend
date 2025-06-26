@@ -1,8 +1,6 @@
 import prisma from '../models/prismaClient';
 import { sendEmail } from '../config/email';
 import { User, Activity } from '../models/prismaClient';
-import fs from 'fs';
-import path from 'path';
 
 class SummaryService {
   async sendManualSummary(userId: string, options?: {
