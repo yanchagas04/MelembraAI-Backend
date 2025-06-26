@@ -16,7 +16,7 @@ const app = express();
 // Middlewares
 app.use(cors(
   {
-    origin: ['*', 'https://melembra-ai.vercel.app', 'localhost:3000', 'http://localhost:3000'],
+    origin: ['*', 'https://melembra-ai.vercel.app', 'localhost:3000', 'http://localhost:3000', 'http://localhost:3002'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   }
