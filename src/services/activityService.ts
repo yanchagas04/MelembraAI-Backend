@@ -8,10 +8,10 @@ interface ActivityData {
 }
 
 class ActivityService {
-  // Criar uma nova atividade
+  // Criar atividade
   async createActivity(activityData: ActivityData, userId: string): Promise<Activity> {
     try {
-      const newActivity = await prisma.activity.create({
+      return await prisma.activity.create({
         data: {
           title: activityData.title,
           description: activityData.description || '',
@@ -20,89 +20,77 @@ class ActivityService {
           userId: userId
         }
       });
-      
-      return newActivity;
     } catch (error) {
-      console.error('Erro no serviço de criação de atividade:', error);
-      throw error;
+      console.error('Erro ao criar atividade:', error);
+      throw new Error('Falha ao criar atividade');
     }
   }
-  
-  // Buscar todas as atividades de um usuário
+
+  // Buscar todas as atividades do usuário
   async getAllActivities(userId: string): Promise<Activity[]> {
     try {
-      const activities = await prisma.activity.findMany({
+      return await prisma.activity.findMany({
         where: { userId },
         orderBy: { date: 'asc' }
       });
-      
-      return activities;
     } catch (error) {
-      console.error('Erro no serviço de busca de atividades:', error);
-      throw error;
+      console.error('Erro ao buscar atividades:', error);
+      throw new Error('Falha ao buscar atividades');
     }
   }
-  
-  // Buscar uma atividade por ID
-  async getActivityById(id: string, userId: string): Promise<Activity> {
+
+  // Buscar atividade por ID
+  async getActivityById(id: string, userId: string): Promise<Activity | null> {
     try {
-      const activity = await prisma.activity.findFirst({
-        where: { 
-          id,
-          userId
-        }
+      return await prisma.activity.findFirst({
+        where: { id, userId }
       });
-      
-      if (!activity) {
-        throw new Error('Atividade não encontrada');
-      }
-      
-      return activity;
     } catch (error) {
+      console.error('Erro ao buscar atividade:', error);
+      throw new Error('Falha ao buscar atividade');
       console.error('Erro no serviço de busca de atividade por ID: ', error);
       throw error;
     }
   }
-  
-  // Atualizar uma atividade
-  async updateActivity(id: string, activityData: ActivityData, userId: string): Promise<Activity> {
+
+  // Atualizar atividade
+  async updateActivity(
+    id: string, 
+    activityData: ActivityData, 
+    userId: string
+  ): Promise<Activity> {
     try {
-      // Verificar se a atividade existe e pertence ao usuário
-      await this.getActivityById(id, userId);
-      
-      const updatedActivity = await prisma.activity.update({
+      return await prisma.activity.update({
         where: { id },
         data: {
           title: activityData.title,
           description: activityData.description,
           date: activityData.date,
-          completed: activityData.completed
+          completed: activityData.completed,
+          userId: userId
         }
       });
-      
-      return updatedActivity;
     } catch (error) {
+      console.error('Erro ao atualizar atividade:', error);
+      throw new Error('Falha ao atualizar atividade');
       console.error('Erro no serviço de atualização de atividade: ', error);
       throw error;
     }
   }
-  
-  // Excluir uma atividade
-  async deleteActivity(id: string, userId: string): Promise<Activity> {
+
+  // Deletar atividade
+  async deleteActivity(id: string, userId: string): Promise<void> {
     try {
-      // Verificar se a atividade existe e pertence ao usuário
-      await this.getActivityById(id, userId);
-      
-      const deletedActivity = await prisma.activity.delete({
-        where: { id }
+      await prisma.activity.deleteMany({
+        where: { id, userId }
       });
-      
-      return deletedActivity;
     } catch (error) {
+      console.error('Erro ao deletar atividade:', error);
+      throw new Error('Falha ao deletar atividade');
       console.error('Erro no serviço de exclusão de atividade: ', error);
       throw error;
     }
   }
 }
 
-export default new ActivityService();
+export const activityService = new ActivityService();
