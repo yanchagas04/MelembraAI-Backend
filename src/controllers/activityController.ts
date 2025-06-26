@@ -53,7 +53,7 @@ class ActivityController {
   // Buscar atividade específica
   async getById(req: Request, res: Response): Promise<void> {
     try {
-      const userId = req.user?.userId as string;
+      const userId = req.user?.userId as unknown as string;
       const activityId = req.params.id;
       
       const activity = await activityService.getActivityById(activityId, userId);
@@ -64,12 +64,6 @@ class ActivityController {
       }
 
       res.status(200).json({ activity });
-    } catch (error) {
-      console.error('Erro no controller (getById):', error);
-      res.status(500).json({ message: 'Erro ao buscar atividade' });
-      res.status(200).json({
-        activity
-      });
     } catch (error: any) {
       console.error('Erro no controller de busca de atividade por ID:', error);
       
@@ -91,7 +85,7 @@ class ActivityController {
         return;
       }
 
-      const userId = req.user?.userId as string;
+      const userId = req.user?.userId as unknown as string;
       const activityId = req.params.id;
       const activityData = {
         title: req.body.title,
@@ -110,9 +104,6 @@ class ActivityController {
         message: 'Atividade atualizada com sucesso',
         activity: updatedActivity
       });
-    } catch (error) {
-      console.error('Erro no controller (update):', error);
-      res.status(500).json({ message: 'Erro ao atualizar atividade' });
     } catch (error: any) {
       console.error('Erro no controller de atualização de atividade:', error);
       
@@ -128,18 +119,11 @@ class ActivityController {
   // Deletar atividade
   async delete(req: Request, res: Response): Promise<void> {
     try {
-      const userId = req.user?.userId as string;
+      const userId = req.user?.userId as unknown as string;
       const activityId = req.params.id;
 
       await activityService.deleteActivity(activityId, userId);
       res.status(200).json({ message: 'Atividade deletada com sucesso' });
-    } catch (error) {
-      console.error('Erro no controller (delete):', error);
-      res.status(500).json({ message: 'Erro ao deletar atividade' });
-      
-      res.status(200).json({
-        message: 'Atividade excluída com sucesso'
-      });
     } catch (error: any) {
       console.error('Erro no controller de exclusão de atividade:', error);
       
